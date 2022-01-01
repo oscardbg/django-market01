@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<!-- . -->
+{% block title %} Products {% endblock %}
+<!-- . -->
+{% block main %}
+<!-- . -->
+<h1>Available Products</h1>
+{% if item_list %}
+<!-- . -->
+<ul>
+   {% for item in item_list %}
+   <li>
+      <p>{{ item.name }}</p>
+      <p>{{ item.price }}</p>
+   </li>
+   {% endfor %}
+</ul>
+<!-- . -->
+{% else %}
+<!-- . -->
+<h4>There is no products list</h4>
+<!-- . -->
+{% endif %}
+<!-- . -->
+{% endblock %}

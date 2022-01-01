@@ -12,13 +12,15 @@
       <header>
          <nav>
             <ul>
-               <li class="logo"><a href="">DjangoApp</a></li>
-               <li><a href="">Home</a></li>
-               <li><a href="">Market</a></li>
+               <li class="logo">
+                  <a href="{% url 'market:home' %} ">DjangoApp</a>
+               </li>
+               <li><a href="{% url 'market:home' %} ">Home</a></li>
+               <li><a href="{% url 'market:items' %} ">Market</a></li>
             </ul>
             <ul>
-               <li><a href="">Login</a></li>
-               <li><a href="">Sign up</a></li>
+               <li><a href="{% url 'market:login' %} ">Login</a></li>
+               <li><a href="{% url 'market:register' %} ">Sign up</a></li>
             </ul>
          </nav>
       </header>
