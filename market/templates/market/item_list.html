@@ -5,22 +5,54 @@
 {% block main %}
 <!-- . -->
 <h1>Available Products</h1>
-{% if item_list %}
 <!-- . -->
-<ul>
-   {% for item in item_list %}
-   <li>
-      <p>{{ item.name }}</p>
-      <p>{{ item.price }}</p>
-      <img src="{{ item.image_url }} " alt="" />
-   </li>
-   {% endfor %}
-</ul>
-<!-- . -->
-{% else %}
-<!-- . -->
-<h4>There is no products list</h4>
-<!-- . -->
-{% endif %}
-<!-- . -->
+<div class="box">
+   {% if item_list %}
+   <ul class="lst-items">
+      <li>
+         <p>Name</p>
+         <p>Price</p>
+         <p>Image</p>
+         <p>Options</p>
+      </li>
+      {% for item in item_list %}
+      <!--  -->
+      {% include 'market/includes/item_modal.html' %}
+      <li>
+         <p>{{ item.name }}</p>
+         <p>$ {{ item.price }}</p>
+         <p>
+            <img src="{{item.image_url}} " alt="" />
+         </p>
+         <p>
+            <span class="opts info">Info</span>
+            <span class="opts buy">Buy</span>
+         </p>
+      </li>
+      {% endfor %}
+   </ul>
+   {% else %}
+   <h3>There are no items in the market</h3>
+   {% endif %}
+
+   <ul class="lst-buy">
+      <li>Owned Items</li>
+      {% if owned %}
+      <!--  -->
+      {% for item in owned %}
+      <!--  -->
+      <li>
+         <p class="name">• {{item.name}}</p>
+         <p><span class="sell">Sell</span></p>
+      </li>
+      {% endfor %}
+      <!--  -->
+      {% else %}
+      <!--  -->
+      <li>No item purchased yet...</li>
+      <!--  -->
+      {% endif %}
+   </ul>
+</div>
+
 {% endblock %}

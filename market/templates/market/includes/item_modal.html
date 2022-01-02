@@ -1,0 +1,33 @@
+<div class="infoModal">
+   <div class="popup">
+      <h3>Item Information</h3>
+      <p>{{ item.name }}</p>
+      <p>Price: $ {{ item.price }}</p>
+      <p>Description: {{ item.description }}</p>
+      <button class="close">Close</button>
+   </div>
+</div>
+
+<div class="buyModal">
+   <div class="popup">
+      <h3>Purchase Item</h3>
+      <p>{{ item.name }}</p>
+      <form method="POST">
+         <p>
+            Are you sure you want to buy {{item.name}} for $ {{item.price}} ?
+         </p>
+         {% csrf_token %}
+         <!--  -->
+         <!--  -->
+         <div class="actions">
+            <input
+               id="buyed_item"
+               name="buyed_item"
+               type="hidden"
+               value="{{ item.name }}"
+            />
+            <button type="button" class="close">Close</button>
+         </div>
+      </form>
+   </div>
+</div>
