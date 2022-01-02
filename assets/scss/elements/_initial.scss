@@ -139,7 +139,7 @@
       font-weight: bold;
       background: #000;
       color: #fff;
-      display: inline-block;
+      display: block;
       margin: 10px auto;
       cursor: pointer;
       &:hover {
@@ -148,7 +148,7 @@
       }
    }
    .actions {
-      text-align: center;
+      display: flex;
    }
 }
 /*■■■■■■■■■■■■■■■■■■■■■■  */

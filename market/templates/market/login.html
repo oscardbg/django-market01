@@ -5,13 +5,16 @@
 {% block main %}
 <!-- . -->
 <h1>Access account</h1>
-<form action="" method="post">
+<form method="post" class="frm-rgs">
    {% csrf_token %}
    <label for="username">User name:</label>
-   <input type="text" name="username" />
+   <input type="password" name="username" />
    <label for="password1">Password:</label>
-   <input type="text" name="password" />
-   <button type="submit">Log in</button>
+   <input type="password" name="password" />
+   <input type="submit" value="Login" />
 </form>
+<p>
+   Don't have an account...? <a href="{% url 'market:register' %} ">Signup</a>
+</p>
 <!-- . -->
 {% endblock %}

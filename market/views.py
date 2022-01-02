@@ -24,7 +24,7 @@ def register_user(request):
 			user = authenticate(username=username, password=password)
 			login(request, user)
 			messages.success(request, f'You have registered successfully, welcome {user.username} ')
-			return redirect('market:home')
+			return redirect('market:items')
 		else:
 			messages.error(request, form.errors)
 			return redirect('market:register')
@@ -32,4 +32,21 @@ def register_user(request):
 	return render(request, 'market/register.html')
 
 def login_user(request):
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			messages.success(request, f'You are logged in as {user.username} ')
+			return redirect('market:items')
+		else:
+			messages.error(request, 'Username or password is incorrect, try again')
+			return redirect('market:login')
+
 	return render(request, 'market/login.html')
+
+def logout_user(request):
+	logout(request)
+	messages.success(request, 'You have been logout...')
+	return redirect('market:login')
