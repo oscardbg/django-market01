@@ -37,10 +37,11 @@
 
    <ul class="lst-buy">
       <li>Owned Items</li>
-      {% if owned %}
+      {% if item_owned %}
       <!--  -->
-      {% for item in owned %}
+      {% for item in item_owned %}
       <!--  -->
+      {% include 'market/includes/sell_modal.html' %}
       <li>
          <p class="name">• {{item.name}}</p>
          <p><span class="sell">Sell</span></p>

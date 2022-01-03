@@ -20,9 +20,14 @@
                <li><a href="{% url 'market:items' %} ">Market</a></li>
             </ul>
             <ul>
+               {% if user.is_authenticated %}
+
+               <li><a href="" class="no-a">{{ user.username }} </a></li>
+               <li><a href="{% url 'market:logout' %} ">Logout</a></li>
+               {% else %}
                <li><a href="{% url 'market:login' %} ">Login</a></li>
                <li><a href="{% url 'market:register' %} ">Sign up</a></li>
-               <li><a href="{% url 'market:logout' %} ">Logout</a></li>
+               {% endif %}
             </ul>
          </nav>
       </header>

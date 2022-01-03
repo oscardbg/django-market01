@@ -8,9 +8,36 @@ def home(request):
 	return render(request, 'market/index.html')
 
 def item_list(request):
-	item_list = Item.objects.all()
+	item_list = Item.objects.filter(owner=None)
+	item_owned = Item.objects.filter(owner=request.user)
+
+	if request.method == 'POST':
+		
+		# Item buying code
+		bitem = request.POST.get('buyed_item')
+		if bitem:
+			buyed_item = bitem
+			itemb_obj = Item.objects.get(name=buyed_item)
+			if itemb_obj:
+				itemb_obj.owner = request.user
+				itemb_obj.save()
+				messages.success(request, f'Congrats, you have bought the item {itemb_obj.name} ')
+		
+		# Item selling code
+		sitem = request.POST.get('selled_item')
+		if sitem:
+			selled_item = sitem
+			items_obj = Item.objects.get(name=selled_item)
+			if items_obj:
+				items_obj.owner = None
+				items_obj.save()
+				messages.success(request, f'Congrats, you have sold the item {items_obj.name} ')
+		
+		return redirect('market:items')
+
 	context = {
-		'item_list': item_list
+		'item_list': item_list,
+		'item_owned': item_owned
 	}
 	return render(request, 'market/item_list.html', context)
 
